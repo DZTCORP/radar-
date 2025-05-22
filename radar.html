@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Radar Animation</title>
+  <style>
+    body {
+      background: #000;
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Orbitron', 'Arial Narrow', sans-serif;
+      color: #4CAF50;
+      text-align: center
+    }
+    .title {
+      font-size: 3.5rem;
+      letter-spacing: 5px;
+      text-transform: uppercase;
+      text-shadow: 0 0 10px #4CAF50, 0 0 20px #4CAF50;
+      margin-bottom: 2rem;
+      animation: glow 2s ease-in-out infinite alternate
+    }
+    .loader {
+      position: relative;
+      width: 150px;
+      height: 150px;
+      background: transparent;
+      border-radius: 50%;
+      box-shadow: 25px 25px 75px rgba(0,0,0,0.55);
+      border: 1px solid #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden
+    }
+    .loader::before, .loader::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      border: 1px dashed #444;
+      box-shadow: inset -5px -5px 25px rgba(0,0,0,0.25),
+                  inset 5px 5px 35px rgba(0,0,0,0.25)
+    }
+    .loader::before { inset: 20px }
+    .loader::after { width: 50px; height: 50px }
+    .loader span {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 50%;
+      height: 100%;
+      background: transparent;
+      transform-origin: top left;
+      animation: radar 2s linear infinite;
+      border-top: 1px dashed #fff
+    }
+    .loader span::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: seagreen;
+      transform-origin: top left;
+      transform: rotate(-55deg);
+      filter: blur(30px) drop-shadow(20px 20px 20px seagreen)
+    }
+    @keyframes radar {
+      0% { transform: rotate(0deg) }
+      100% { transform: rotate(360deg) }
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #4CAF50, 0 0 10px #4CAF50 }
+      to { text-shadow: 0 0 10px #4CAF50, 0 0 20px #4CAF50, 0 0 30px #4CAF50 }
+    }
+  </style>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="title">RADAR</div>
+  <div class="loader"><span></span></div>
+</body>
+</html>
